@@ -7,16 +7,17 @@ const subSchema = mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "question",
       },
-      file: {
-        type: Buffer ,
-        required: true,
-      },
+    
       
       user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "student",
       },
     
+      code:{
+        type: String,
+        required: true,
+      }
      
       
      }

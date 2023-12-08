@@ -9,19 +9,27 @@ const getRoutes = require("./Routes/Getters");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+
+
+database.connect();
+
+app.use(
+	cors({
+		origin: "*",
+		credentials: true,
+	})
+);
+app.use(express.json());
+app.use(cookieParser());
+
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
-
-database.connect();
-app.use(express.json());
-app.use(cookieParser());
-app.use(cors({ origin: "*", }));
-
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/auth",questionRoutes);
 app.use("/api/v1/auth",getRoutes);
 app.use('/api/v1/code', codeRoute);
-app.listen(process.env.PORT || 55000, () => {
+
+app.listen(process.env.PORT || 5000, () => {
   console.log(`Listening on port ${process.env.PORT}`);
 });

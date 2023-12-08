@@ -13,7 +13,7 @@ exports.signup = async (req, res) => {
     const { userName, password, accountType } = req.body;
 
     if (!userName || !password || !accountType) {
-      return res.status(403).send({
+      return res.status(200).send({
         success: false,
         message: "All Fields are required",
       });
@@ -21,14 +21,14 @@ exports.signup = async (req, res) => {
 
     const existingUser = await Student.findOne({ userName });
     if (existingUser) {
-      return res.status(400).json({
+      return res.status(200).json({
         success: false,
         message: "User already exists. Please sign in to continue.",
       });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
+    // console.log(hashedPassword);
 
     if (accountType === "student") {
       const user = await Student.create({
@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
 
     if (!userName || !password) {
       
-      return res.status(400).json({
+      return res.status(200).json({
         success: false,
         message: `Please Fill up All the Required Fields`,
       })
@@ -87,7 +87,7 @@ exports.login = async (req, res) => {
     
     if (!user) {
      
-      return res.status(401).json({
+      return res.status(200).json({
         success: false,
         message: `User is not Registered with Us Please SignUp to Continue`,
       })
@@ -135,9 +135,10 @@ exports.login = async (req, res) => {
 exports.addToClass = async (req, res)=>{
   try {
     const { userName, instructorName } = req.body;
+    
 
     if (!userName || !instructorName) {
-      return res.status(403).send({
+      return res.status(200).send({
         success: false,
         message: "All Fields are required",
       });

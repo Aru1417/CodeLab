@@ -1,5 +1,5 @@
 const express = require("express");
-const { addToClass } = require("../Controllers/Auth");
+const addToClass  = require("../Controllers/Auth").addToClass;
 const router = express.Router()
 
 const signup = require("../Controllers/Auth").signup;

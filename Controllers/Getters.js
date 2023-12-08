@@ -4,6 +4,7 @@ const Student = require("../Models/Student");
 
 exports.getAllInstructors = async (req, res) => {
     try {
+     
         const userName1 = req.user.userName;
         console.log(userName1);
         const student =  await Student.findById(req.user.id);
