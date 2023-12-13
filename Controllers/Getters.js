@@ -1,5 +1,7 @@
 const Instructor = require("../Models/Instructor");
 const Student = require("../Models/Student");
+const Submission = require("../Models/Submission");
+const mongoose = require("mongoose");
 
 exports.getAllInstructors = async (req, res) => {
   try {
@@ -47,33 +49,59 @@ exports.getAllStudents = async (req, res) => {
 };
 exports.getsub = async (req, res) => {
   try {
+  
+    let {qid} = req.body;
     
-    let qid = req.body.qid;
     qid = new mongoose.Types.ObjectId(qid);
-    const allData = await Student.findById(req.user.id)
+   
+   
+    const allData = await Student.findById({_id:req.user.id})
       .populate("submissions")
       .exec();
-    for (let i = 0; i < allData.submissions.length; i++) {
-      if (allData.submissions[i].question == qid) {
-        submission = await Submission.findById({
-          _id: allData.submissions[i]._id,
-        });
-        res.status(200).json({
-          success: true,
-          data: submission,
-          message: "Submission Fetched Successfully",
-        });
-      }
 
-      res.status(200).json({
+
+    if(allData.submissions.length == 0){
+      return res.status(200).json({
         success: false,
         message: "no submission",
       });
     }
+    let flag = false;
+    console.log(allData.submissions[0].question);
+    
+    for (let i = 0; i < allData.submissions.length; i++) {
+      
+      if (allData.submissions[i].question.equals(qid)) {
+        console.log("inside if");
+         let sub = await Submission.findById({
+          _id: allData.submissions[i]._id,
+        });
+        res.status(200).json({
+          success: true,
+          data: sub,
+          message: "Submission Fetched Successfully",
+        });
+        flag = true;
+        break;
+      }
+      else{
+        continue;
+      }
+
+      
+    }
+    if(flag == false){
+     
+    res.status(200).json({
+      success: false,
+      message: "no submission",
+    });
+  }
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Instructors can't be fetched",
+      message: "submission can't be fetched",
+      error: error.message,
     });
   }
 };

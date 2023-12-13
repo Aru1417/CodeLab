@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/getallinstructors", auth, isStudent,getAllInstructors);
 router.get("/getallstudents", auth,isInstructor, getAllStudents);
-router.get("/getsubmission", auth, isStudent,getsub);
+router.post("/getsubmission", auth, isStudent,getsub);
 
 
 module.exports = router;

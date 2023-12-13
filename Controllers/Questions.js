@@ -235,7 +235,7 @@ exports.getAllQuestions = async (req, res) => {
             { new: true }
           )
          flag = true;
-         console.log("firast case")
+         console.log("first case")
           break;
         }
         else{

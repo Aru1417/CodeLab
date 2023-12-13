@@ -12,11 +12,13 @@ dotenv.config();
 exports.auth = async (req, res, next) => {
 	try {
 		
-		
+		// console.log(req.header("Authorization"));
 		const token =
 			req.cookies.token ||
 			req.body.token ||
 			req.header("Authorization").replace("Bearer ", "");
+			// console.log("token is here");	
+			// console.log(token);
          
 		
 		if (!token) {
@@ -25,13 +27,13 @@ exports.auth = async (req, res, next) => {
 
 		try {
 			const decode =  jwt.verify(token, process.env.JWT_SECRET);
-			console.log(decode);
+			// console.log(decode);
 			req.user = decode;
 		} catch (error) {
 			
 			return res
 				.status(401)
-				.json({ success: false, message: "token is invalid" });
+				.json({ success: false, message: "token is invalid" ,error:error.message});
 		}
 
 		
@@ -48,10 +50,10 @@ exports.auth = async (req, res, next) => {
 exports.isStudent = async (req, res, next) => {
 	try {
 		let id = new mongoose.Types.ObjectId(req.user.id);
-		console.log(id)
+		// console.log(id)
 		
 		const userDetails = await Student.findOne({ _id: id });
-		console.log(userDetails)
+		
 
 		if (userDetails.accountType !== "student") {
 			return res.status(401).json({
