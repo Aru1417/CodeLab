@@ -3,18 +3,21 @@ const dotenv = require("dotenv");
 const Student = require("../Models/Student");
 const Instructor = require("../Models/Instructor");
 const Admin = require("../Models/Admin");
+const mongoose = require("mongoose");
+
 
 dotenv.config();
 
 
 exports.auth = async (req, res, next) => {
 	try {
-		console.log(req.body);
+		
+		
 		const token =
 			req.cookies.token ||
 			req.body.token ||
 			req.header("Authorization").replace("Bearer ", "");
-          
+         
 		
 		if (!token) {
 			return res.status(401).json({ success: false, message: `Token Missing` });
@@ -37,13 +40,18 @@ exports.auth = async (req, res, next) => {
 		
 		return res.status(401).json({
 			success: false,
-			message: `Something Went Wrong While Validating the Token here`,
+			message: `Something Went Wrong While Validating the Token here auth`,
+			error: error.message,
 		});
 	}
 };
 exports.isStudent = async (req, res, next) => {
 	try {
-		const userDetails = await Student.findOne({ userName: req.user.userName });
+		let id = new mongoose.Types.ObjectId(req.user.id);
+		console.log(id)
+		
+		const userDetails = await Student.findOne({ _id: id });
+		console.log(userDetails)
 
 		if (userDetails.accountType !== "student") {
 			return res.status(401).json({
@@ -55,7 +63,7 @@ exports.isStudent = async (req, res, next) => {
 	} catch (error) {
 		return res
 			.status(500)
-			.json({ success: false, message: `User Role Can't be Verified` });
+			.json({ success: false, message: `User Role Can't be Verified student`,error:error.message });
 	}
 };
 exports.isAdmin = async (req, res, next) => {

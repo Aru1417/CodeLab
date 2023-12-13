@@ -24,10 +24,10 @@ const instructorSchema = mongoose.Schema((
           ref: "student",
         },
       ],
-      assingments: [
+      assignments: [
         {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "question",
+          ref: "assignment",
         },
       ]
      }

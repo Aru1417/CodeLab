@@ -17,7 +17,15 @@ const subSchema = mongoose.Schema(
       code:{
         type: String,
         required: true,
-      }
+      },
+      language :{
+        type: String,
+        required: true,
+      },
+      subDate: {
+        type: Date,
+        default: Date.now,
+    }
      
       
      }

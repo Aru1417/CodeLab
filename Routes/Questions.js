@@ -1,9 +1,15 @@
-const express = require("express");
-const { isInstructor } = require("../Middlewares/Auth");
-const { addQuestion } = require("../Controllers/Questions");
+const express = require('express');
+const router = express.Router();
+const { isInstructor, isStudent } = require("../Middlewares/Auth");
+const { addQuestion, addAssignment, getAllAssignment,getAssignment,submitAsg } = require("../Controllers/Questions");
 const {auth}  = require("../Middlewares/Auth");
-const router = express.Router()
 
 
-router.post("/addquestion",auth, isInstructor, addQuestion);
+router.post("/addquestion", auth,isInstructor,  addQuestion);
+// router.post("/addquestion", auth, isInstructor, addQuestion);
+router.post("/addasg",auth, isInstructor, addAssignment);
+router.get("/getallasg", auth, isStudent, getAllAssignment);
+router.get("/getasg", auth, isStudent,getAssignment);
+router.post("/subasg", auth, isStudent,submitAsg);
+
 module.exports = router;

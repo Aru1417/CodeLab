@@ -8,11 +8,11 @@ const qSchema = mongoose.Schema(
         required: true,
       },
     
-      instructor:
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "instructor",
-        },
+      assignment:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "assignment",
+      },
+      
       
       
      }
