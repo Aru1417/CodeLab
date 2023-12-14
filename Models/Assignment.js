@@ -12,11 +12,7 @@ const asgSchema = mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "instructor",
         },
-        questions:
-        [{
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "question",
-        }],
+       
         lastDate: {
             type: Date,
             default: Date.now,

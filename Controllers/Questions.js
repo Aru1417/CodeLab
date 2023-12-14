@@ -26,7 +26,7 @@ exports.addQuestion = async (req, res) => {
    
    
     const instructorDetails = await Instructor.findById(req.user.id);
-    console.log(instructorDetails)
+
 
     if (!instructorDetails) {
       return res.status(404).json({
@@ -62,7 +62,7 @@ exports.addQuestion = async (req, res) => {
     });
   } catch (error) {
    
-    console.error(error);
+   
     res.status(500).json({
       success: false,
       message: "Failed to create question",
@@ -92,8 +92,7 @@ exports.addAssignment = async (req, res) => {
    
    
     const instructorDetails = await Instructor.findById(req.user.id);
-    console.log(instructorDetails)
-
+  
     if (!instructorDetails) {
       return res.status(200).json({
         success: false,
@@ -129,7 +128,7 @@ exports.addAssignment = async (req, res) => {
     });
   } catch (error) {
    
-    console.error(error);
+
     res.status(200).json({
       success: false,
       message: "Failed to create Assignment",
@@ -154,7 +153,7 @@ exports.getAllQuestions = async (req, res) => {
         data: AllQuestions,
       })
     } catch (error) {
-      console.log(error)
+    
       return res.status(404).json({
         success: false,
         message: `Can't Fetch Course Data`,
@@ -168,16 +167,18 @@ exports.getAllQuestions = async (req, res) => {
   exports.getAllAssignment = async (req, res) => {
     try {
       const{InsId} = req.body;
-      const AllAssignment = await Instructor.find({ InsId } ).populate("assignments").exec();
-      
+      // console.log(InsId)
+      const AllAssignment = await Instructor.find({ _id: InsId } ).populate("assignments").exec();
+      // console.log(AllAssignment)
+      // console.log(AllAssignment[0])
       const result = AllAssignment[0].assignments;
-     
+   
       return res.status(200).json({
         success: true,
         data: result,
       })
     } catch (error) {
-      console.log(error)
+  
       return res.status(404).json({
         success: false,
         message: `Can't Fetch Course Data`,
@@ -200,7 +201,7 @@ exports.getAllQuestions = async (req, res) => {
         data: result,
       })
     } catch (error) {
-      console.log(error)
+
       return res.status(404).json({
         success: false,
         message: `Can't Fetch Course Data`,
@@ -235,7 +236,7 @@ exports.getAllQuestions = async (req, res) => {
             { new: true }
           )
          flag = true;
-         console.log("first case")
+        
           break;
         }
         else{
@@ -256,7 +257,7 @@ exports.getAllQuestions = async (req, res) => {
             language:language,
             Date:Date.now()
           }) 
-          console.log(submission)
+         
         
         await Student.findByIdAndUpdate(
           {
@@ -278,7 +279,7 @@ exports.getAllQuestions = async (req, res) => {
         message:"Assignment Submitted Successfully"
       })
     } catch (error) {
-      console.log(error)
+     
       return res.status(404).json({
         success: false,
         message: `Can't Fetch Course Data`,
