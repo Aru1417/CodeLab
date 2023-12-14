@@ -19,7 +19,7 @@ exports.signup = async (req, res) => {
       });
     }
 
-    const existingUser = await Student.findOne({ userName });
+    const existingUser = await Student.findOne({ userName:userName });
     if (existingUser) {
       return res.status(200).json({
         success: false,

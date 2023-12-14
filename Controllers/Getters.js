@@ -6,9 +6,9 @@ const mongoose = require("mongoose");
 exports.getAllInstructors = async (req, res) => {
   try {
     const userName1 = req.user.userName;
-    console.log(userName1);
+    // console.log(userName1);
     const student = await Student.findById(req.user.id);
-    console.log(student);
+    // console.log(student);
     const instructors = await Instructor.find({ students: student._id });
     const instructors1 = instructors.map((instructor) => {
       return { name: instructor.userName, id: instructor._id };
@@ -67,12 +67,12 @@ exports.getsub = async (req, res) => {
       });
     }
     let flag = false;
-    console.log(allData.submissions[0].question);
+    // console.log(allData.submissions[0].question);
     
     for (let i = 0; i < allData.submissions.length; i++) {
       
       if (allData.submissions[i].question.equals(qid)) {
-        console.log("inside if");
+        // console.log("inside if");
          let sub = await Submission.findById({
           _id: allData.submissions[i]._id,
         });

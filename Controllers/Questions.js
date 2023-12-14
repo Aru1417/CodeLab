@@ -192,7 +192,9 @@ exports.getAllQuestions = async (req, res) => {
   exports.getAssignment = async (req, res) => {
     try {
       const{asgId} = req.body;
-      const AllAssignment = await Assignment.find({asgId}) 
+      
+      const AllAssignment = await Assignment.find({_id:asgId}) 
+   
       
       const result = AllAssignment[0];
      
