@@ -6,6 +6,7 @@ import Spinner from '../image/Spinner';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import forbidden from "../component/images/forbidden.png"
+import file from '../image/file.png'
 import { ClassNames } from '@emotion/react';
 const BASE_URL = process.env.REACT_APP_API_URL
 
@@ -95,7 +96,8 @@ const Stdassignments = () => {
           </div>
          { result.length>0 && result.map((data) => {
             return <div><Link to={`${data._id}` }>
-                <div className='bg-slate-400 m-5 p-5'>
+                <div className='flex text-xl bg-slate-200 rounded-xl p-5 m-5'>
+                  <img src={file} className='flex justify-center' width="40px"/>
                 {data.name}
                 </div> 
                 </Link></div>

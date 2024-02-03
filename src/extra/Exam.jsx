@@ -3,6 +3,7 @@ import Code from '../component/Code';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../services/operations/authapi';
+import exam from '../image/exam.jpg';
 const Exam = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const navigate = useNavigate();
@@ -86,9 +87,12 @@ const Exam = () => {
           <Code/>
         </div>
       ) : (
-        <div className='min-h-[80vh] flex justify-center items-center' >
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={enterFullscreen}>Go to Fullscreen</button>
-        </div>
+        <div className='min-h-[50vh] relative'>
+        <img src={exam} width='100%' className='flex-row' />
+        <button className='bg-blue-300 hover:bg-blue-400 text-blue font-bold py-2 px-4 rounded z-10 absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2' onClick={enterFullscreen}>
+          Go to Fullscreen
+        </button>
+      </div>
       )}
     </div>
   );

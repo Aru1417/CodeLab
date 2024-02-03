@@ -6,6 +6,7 @@ import Spinner from "../image/Spinner";
 import toast from "react-hot-toast";
 import axios from "axios";
 import forbidden from "../component/images/forbidden.png";
+import file from '../image/file.png'
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const send = async ({ token, stdid }) => {
@@ -86,12 +87,14 @@ const Submissions = () => {
               </div>
             </div>
             <div className="flex items-center justify-center ">
-              <div>
+              <div className=" w-[90%]">
                 {data.map((obj) => {
                   return (
                     <div key={obj.userId}>
                       <Link to={`${obj.questionId}/${obj.submissionId}`}>
-                        <div  className="bg-slate-400 w-[100%] m-3 p-4 rounded-md">{obj.questionName}</div>
+                        <div  className="flex text-xl bg-slate-200 rounded-xl p-5 m-5">
+                        <img src={file} className='flex justify-center' width="40px"/>
+                         {obj.questionName}</div>
                       </Link>
                     </div>
                   );

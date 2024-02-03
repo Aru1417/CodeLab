@@ -14,6 +14,12 @@ import Spinner from '../image/Spinner';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
+
+import submmit from '../image/submit.png';
+import software from '../image/software.png';
+
+import { motion, useScroll } from "framer-motion";
+
 // import { get } from 'react-scroll/modules/mixins/scroller';
 
 
@@ -55,7 +61,8 @@ export default  function Codesub({question , id, token }) {
       setLoading(false);
     },[])
 
-       
+    
+    const { scrollYProgress } = useScroll();
     
     const [theme, setTheme] = useState('terminal');
     const [code, setCode] = useState('// your code goes here');
@@ -178,11 +185,18 @@ export default  function Codesub({question , id, token }) {
     }
 
     return (
-        <div>
+<>         <motion.div
+  className="fixed p-0 top-0 z-10 left-0 right-0 h-3 bg-red-500 animate-none origin-top-left"
+  style={{ scaleX: scrollYProgress }}
+/>
+
+
+<div>
+
             <div className='text-3xl' >
                 {question}
             </div>
-        <div>
+        <div className='scroll-smooth focus:scroll-auto'>
             <div className='pt-5'>
                 <div className='flex justify-evenly text-blue-800 text-lg'>
                     <div className='theme-select outline outline-offset-2 outline-pink-400 rounded-md p-1'>
@@ -227,20 +241,21 @@ export default  function Codesub({question , id, token }) {
                         }} />
                     <Copy code={code} />
                 </div>
-                <div className='flex justify-center mt-2 mb-2'>
-                    <div className='flex justify-evenly w-[50%]'>
-                        <button className='border-2 border-blue-500 rounded-2xl p-2 hover:text-white hover:bg-blue-500 transition-all ease-in-out' onClick={send}>Compile and Execute</button>
-                        <button className='border-2 border-blue-500 rounded-2xl p-2 hover:text-white hover:bg-blue-500 transition-all ease-in-out' onClick={submit}>submit</button>
+                <div className='flex ml-[70%] '>
+                    <div className='flex'>
+                        <button className='flex border-2 font-semibold text-xl border-blue-500 mr-0.5 p-3 hover:text-white hover:bg-blue-500 transition-all ease-in-out' onClick={send}>  <img src={software} className="mr-3" width="30px" alt="" /> <span> Compile and Execute</span> </button>
+                        <button className='flex border-2 font-semibold text-xl border-blue-500 rounded-tr-lg rounded-br-lg p-3 hover:text-white hover:bg-blue-500 transition-all ease-in-out' onClick={submit}> <img src={submmit} className="mr-3" width="30px" alt="" /> <span> Submit</span> </button>
                     </div>
                 </div>
-                <div className="w-full flex justify-center mt-10 gap-8 items-center">
-                    <label htmlFor="stdin" className='text-3xl'>Your Input</label>
+
+                <div className="flex pl-10 justify-start gap-8 items-start">
+                    <label htmlFor="stdin" className='text-4xl'>Your Input : </label>
                     <input
                         type="text"
                         placeholder="Enter stdin"
                         value={stdin}
                         name='stdin'
-                        className='border-2 border-black-500 rounded-xl p-2 w-72'
+                        className='border-2 border-black-500 rounded-xl p-3 w-72'
                         onChange={(e) => setStdin(e.target.value)}
                     />
                 </div>
@@ -250,7 +265,7 @@ export default  function Codesub({question , id, token }) {
                         {loading ? 
                             <Spinner  /> : 
                             <div className='flex flex-col w-[80%]'>
-                                <h1 className=' font-bold text-xl mt-16'>OUTPUT</h1>
+                                <h1 className=' font-bold text-xl align-center'>OUTPUT</h1>
                                 {res.split('\n').map((line , index) => <h2 key={index} className='text-lg'>{line}</h2>)}
                                 {/* <h1 className='text-lg'>{`Output: ${res}`}</h1> */}
                             </div>
@@ -263,6 +278,7 @@ export default  function Codesub({question , id, token }) {
             </div>
         </div>
         </div>
+        </>
     );
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { logout } from "../services/operations/authapi"
 import { useDispatch } from 'react-redux';
-
+import logoout from "../image/log-out.png";
 
 const Logout = () => {
     const navigate = useNavigate()
@@ -16,32 +16,24 @@ const Logout = () => {
   };
 
     return (
-        <form> 
-        <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-            <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-                <div
-                    class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
-                </div>
-                <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                    <div class="max-w-md mx-auto">
-                        <div>
-                            <h1 class="text-2xl font-semibold">Logged In </h1>
-                            {/* <faCheckSquare/> */}
-                        </div>
-                        <div class="divide-y divide-gray-200">
-                            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                
-                                <div class="relative">
-                                    <button class="bg-blue-500 text-white rounded-md px-2 py-1" onClick={handleLogout   }>LogOut</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div className='flex justify-center items-center min-h-screen '>
+    <div className=' flex flex-col justify-center p-1 rounded-xl w-[400px]'>
+        <form className='max-w-[400px] w-full mx-auto rounded-2xl bg-gray-900 p-[15%] pl-[10%] pr-[10%] px-8'>
+            <img src={logoout} className='ml-[33%] mb-5' width='35%'/>
+            <h2 className='text-4xl ml-2 dark:text-white font-bold text-center'><span className='underline font-bold'>Logged In</span></h2>
+            {/* <div className='flex flex-col text-gray-400 py-2'> */}
+            
+            <div className='flex justify-center item-center text-gray-400 py-2'>
+                
+            
             </div>
-        </div>
+            <button className='w-[50%] m-4 p-4 rounded-2xl bg-blue-500 hover:bg-blue-600 shadow-lg shadow-blue-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg' onClick={handleLogout}>LOGOUT</button>
+
         </form>
-  )
+    </div>
+</div>
+
+  );
 }
 
 export default Logout;
