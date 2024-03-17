@@ -210,7 +210,7 @@ export default function Codesub({ question, id, token }) {
             </div>
 
             <div className="ace-editor relative flex justify-end gap-[1%]">
-              <div className=" flex justify-start text-3xl p-10 bg-[#E8E8E8] rounded-xl w-[35%]">
+              <div className=" flex justify-start text-3xl p-10 bg-[#E8E8E8] rounded-xl w-[35%]" theme={theme}>
                 {question}
               </div>
               <AceEditor
