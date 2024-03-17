@@ -6,7 +6,24 @@ import axios from "axios";
 import Spinner from "../image/Spinner";
 import { Link } from "react-router-dom";
 import { motion, useScroll } from "framer-motion";
-import code from  '../image/code.jpg';
+import code from "../image/code.jpg";
+
+import Dashboard from "../component/pages/Dashboard";
+import Users from "../component/pages/Users";
+import Messages from "../component/pages/Messages";
+import FileManager from "../component/pages/FileManager";
+import Analytics from "../component/pages/Analytics";
+import Order from "../component/pages/Order";
+import Saved from "../component/pages/Saved";
+import Setting from "../component/pages/Setting";
+import TodoList from "./TodoList";
+
+import BottomNavBar from "../extra/BottomNavBar";
+
+import "./SideBar.css";
+import StudentSideBar from "../component/Sidebar/StudentSideBar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 const StudentDashboard = () => {
   const { scrollYProgress } = useScroll();
 
@@ -40,38 +57,29 @@ const StudentDashboard = () => {
 
   return (
     <div className="min-h-screen scroll-smooth focus:scroll-auto">
-          <motion.div
-  className="fixed p-0 top-0 left-0 z-10 right-0 h-3 bg-red-500 animate-none origin-top-left"
-  style={{ scaleX: scrollYProgress }}
-/>
+      <motion.div
+        className="fixed p-0 top-0 left-0 z-10 right-0 h-3 bg-red-500 animate-none origin-top-left"
+        style={{ scaleX: scrollYProgress }}
+      />
 
-      <div className="font-semibold font-mono text-4xl" >Hello Student</div> 
-      <div className="flex justify-center mt-4 ">
-        <main className=" w-[90%] p-8 bg-white rounded-lg shadow-lg border-gray-400 border-2 h-[50%]">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-3xl font-semibold"># All Subjects</h1>
-            </div>
-          </div>
-          <div className="w-[100%]  flex justify-evenly">
-            {responseData.length > 0 &&
-              responseData.map((data) => {
-                return (
-                  <Link className="" to={`sub/${data.id}`}>
-                  <div className="flex flex-col justify-center bg-sky-100 hover:bg-blue-200 text-black font-bold w-52 h-40 rounded-3xl m-2">
-                      <div className="mx-auto ">
-                          <img src={code} width='80px' className="rounded-xl"/>
-                        <div className="mt-1 ">
-                          {data.name}
-                        </div>
-                      </div>
-                  </div>
-                    </Link>
-                );
-              })}
-          </div>
-        </main>
-      </div>
+      <StudentSideBar>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/users" element={<Users />} />
+          {/* <Route path="/messages" element={<Messages />} /> */}
+          {/* <Route path="/analytics" element={<Analytics />} /> */}
+          <Route path="/file-manager" element={<FileManager />} />
+          {/* <Route path="/order" element={<Order />} /> */}
+          <Route path="/saved" element={<Saved />} />
+          {/* <Route path="/settings" element={<Setting />} /> */}
+
+          <Route path="*" element={<> not found</>} />
+        </Routes>
+      </StudentSideBar>
+
+      {/* <div className="">
+        <BottomNavBar />
+      </div> */}
     </div>
   );
 };

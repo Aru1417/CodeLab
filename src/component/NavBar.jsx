@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import "./NavBar.css";
 
+import Buttondesign from "../component/buttondesign";
 function NavBar() {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
@@ -24,7 +25,8 @@ function NavBar() {
 
   return (
     <>
-      <nav className="opacity-96 border-gray-200 dark:bg-[#041318]">
+    {/* <Buttondesign/> */}
+      <nav className="z-20 border-b-[1px]  border-primary/50 bg-gradient-to-l from-violet-900 via-violet-800 to-violet-900 text-white shadow-lg ">
         {/* looading?( <ClipLoader
         color='red'
         loading={looading}
@@ -74,24 +76,24 @@ function NavBar() {
             } w-full md:block md:w-auto mt-4 md:mt-0`}
             id="navbar-default"
           >
-            <ul className="opacity-0.5 font-medium flex flex-col p-4 md:p-0 md:flex-row md:space-x-8 md:border-0 md:bg-[#041318] dark:bg-gray-800 dark:border-gray-700">
+            <ul className=" font-semibold flex flex-col md:p-0 md:flex-row md:space-x-8 md:border-0  items-center gap-5">
               <NavLink to="/">
                 <li>
-                  <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
+                  <div className=" block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                     Home
                   </div>
                 </li>
               </NavLink>
               <NavLink to="/about">
                 <li>
-                  <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
+                  <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent   ">
                     About
                   </div>
                 </li>
               </NavLink>
               <NavLink to="/try">
                 <li>
-                  <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
+                  <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent   ">
                     Try Now
                   </div>
                 </li>
@@ -99,7 +101,7 @@ function NavBar() {
               {token === null && (
                 <NavLink to="/login">
                   <li>
-                    <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
+                    <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent   ">
                       Login
                     </div>
                   </li>
@@ -108,7 +110,7 @@ function NavBar() {
 
               {token !== null && (
                 <NavLink to="/logout">
-                  <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
+                  <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent   ">
                     Logout
                   </div>
                 </NavLink>
@@ -116,7 +118,7 @@ function NavBar() {
               {user !== null && (
                 <NavLink to="/dashboard">
                   <li>
-                    <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
+                    <div className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 hover:border-2  md:hover:bg-transparent md:hover:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                       Dashboard
                     </div>
                   </li>
